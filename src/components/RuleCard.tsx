@@ -269,7 +269,9 @@ export function RuleCard({ rule, index, showFull, onSendToBuild }: Props) {
 
       <div className="clause then">
         <span className="lab">THEN</span>
-        <div className="body">{renderAction(rule.action, showFull)}</div>
+        <div className="body">
+          <span className="sentence">{renderAction(rule.action, showFull)}</span>
+        </div>
       </div>
 
       {showFlow && (

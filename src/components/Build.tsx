@@ -382,7 +382,6 @@ export function Build({ seed }: { seed: Rule | null }) {
                               })
                             }
                           />
-                          <span className="to" />
                           <span className="hint-inline">maps to query column {i + 1}</span>
                           <button
                             className="iconbtn"

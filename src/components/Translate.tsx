@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { parse, type Rule } from "../lib";
 import { RuleCard } from "./RuleCard";
+import { CodeEditor } from "./CodeEditor";
 
 interface Props {
   source: string;
@@ -54,15 +55,13 @@ export function Translate({
           </button>
         </div>
         <div className="pane-body">
-          <textarea
-            className="editor"
-            aria-label="Claim rules source"
+          <CodeEditor
             value={source}
-            spellCheck={false}
+            onChange={onSourceChange}
+            ariaLabel="Claim rules source"
             placeholder={
               "Paste your ADFS claim rules here…\n\nExample:\nc:[Type == \"…/upn\"] => issue(claim = c);"
             }
-            onChange={(e) => onSourceChange(e.target.value)}
           />
         </div>
       </div>
