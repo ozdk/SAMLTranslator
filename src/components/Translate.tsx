@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { parse, type Rule } from "../lib";
+import { EXAMPLES, parse, type Rule } from "../lib";
 import { RuleCard } from "./RuleCard";
 import { CodeEditor } from "./CodeEditor";
 
@@ -8,7 +8,6 @@ interface Props {
   onSourceChange: (s: string) => void;
   showFull: boolean;
   onShowFullChange: (b: boolean) => void;
-  onLoadExample: () => void;
   onSendToBuild: (rule: Rule) => void;
 }
 
@@ -38,11 +37,15 @@ export function Translate({
   onSourceChange,
   showFull,
   onShowFullChange,
-  onLoadExample,
   onSendToBuild,
 }: Props) {
   const result = useMemo(() => parse(source), [source]);
   const trimmed = source.trim();
+
+  const loadExample = (id: string) => {
+    const ex = EXAMPLES.find((e) => e.id === id);
+    if (ex) onSourceChange(ex.rules);
+  };
 
   return (
     <div className="split">
@@ -50,9 +53,21 @@ export function Translate({
         <div className="pane-head">
           <h2>Claim rules</h2>
           <span className="spacer" />
-          <button className="btn ghost" onClick={onLoadExample}>
-            Load example
-          </button>
+          <select
+            className="select-btn"
+            aria-label="Load an example claim rule"
+            value=""
+            onChange={(e) => loadExample(e.target.value)}
+          >
+            <option value="" disabled>
+              Load example…
+            </option>
+            {EXAMPLES.map((ex) => (
+              <option key={ex.id} value={ex.id} title={ex.description}>
+                {ex.name}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="pane-body">
           <CodeEditor

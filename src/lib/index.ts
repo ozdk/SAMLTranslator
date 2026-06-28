@@ -18,12 +18,10 @@ export {
 export type { ClaimTypeInfo } from "./claimTypes";
 export { PRESETS, presetById, str, member, claimCondition } from "./model";
 export type { BuilderPreset } from "./model";
+export { EXAMPLES } from "./examples";
+export type { Example } from "./examples";
 
-/** The example from the project brief — ADFS LdapClaims + permit rules. */
-export const EXAMPLE_RULES = `@RuleTemplate = "LdapClaims"
-@RuleName = "UPN and Roles"
-c:[Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/windowsaccountname", Issuer == "AD AUTHORITY"]
- => issue(store = "Active Directory", types = ("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn", "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"), query = ";userPrincipalName,tokenGroups;{0}", param = c.Value);
+import { EXAMPLES } from "./examples";
 
- => issue(Type = "http://schemas.microsoft.com/authorization/claims/permit", Value = "true");
-`;
+/** Default example shown on load — the ADFS LdapClaims + permit rules. */
+export const EXAMPLE_RULES = EXAMPLES[0].rules;

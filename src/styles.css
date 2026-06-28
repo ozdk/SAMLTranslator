@@ -245,6 +245,27 @@ body {
   accent-color: var(--accent);
 }
 
+/* example picker styled like a ghost button */
+.select-btn {
+  font: inherit;
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 5px 9px;
+  cursor: pointer;
+  max-width: 220px;
+}
+.select-btn:hover {
+  background: var(--surface-2);
+}
+.select-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
 /* ---- Highlighted code editor (overlay technique) ---- */
 .ce {
   position: relative;

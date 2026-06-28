@@ -55,7 +55,6 @@ export function App() {
           onSourceChange={setSource}
           showFull={showFull}
           onShowFullChange={setShowFull}
-          onLoadExample={() => setSource(EXAMPLE_RULES)}
           onSendToBuild={sendToBuild}
         />
       ) : (
